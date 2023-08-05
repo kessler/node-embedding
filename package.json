@@ -1,0 +1,28 @@
+{
+  "name": "@kessler/embedding",
+  "version": "1.0.0",
+  "description": "An engine for handling LLM embedding",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kessler/node-embedding.git"
+  },
+  "keywords": [
+    "ai",
+    "embedding",
+    "gpt",
+    "openai"
+  ],
+  "author": "Yaniv Kessler",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/kessler/node-embedding/issues"
+  },
+  "homepage": "https://github.com/kessler/node-embedding#readme",
+  "dependencies": {
+    "ava": "^5.3.1"
+  }
+}
