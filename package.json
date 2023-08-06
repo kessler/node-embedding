@@ -22,7 +22,10 @@
     "url": "https://github.com/kessler/node-embedding/issues"
   },
   "homepage": "https://github.com/kessler/node-embedding#readme",
-  "dependencies": {
+  "peerDependencies": {
+    "openai": "3.x"
+  },
+  "devDependencies": {
     "ava": "^5.3.1"
   }
 }
