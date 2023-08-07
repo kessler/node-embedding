@@ -2,7 +2,7 @@
   "name": "@kessler/embedding",
   "version": "1.1.0",
   "description": "An engine for handling LLM embedding",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "npx ava"
   },
