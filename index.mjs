@@ -1,7 +1,7 @@
 //import loadProviders from './lib/providers.mjs'
 import OpenAIEmbedder from './lib/OpenAIEmbedder.mjs'
 import SimpleStorage from './lib/SimpleStorage.mjs'
-import Collection from './lib/Collection'
+import Collection from './lib/Collection.mjs'
 
 export { OpenAIEmbedder, SimpleStorage, Collection }
 
