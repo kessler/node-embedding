@@ -1,5 +1,5 @@
 import test from 'ava'
-import SimpleStorage from '../lib/SimpleStorage.mjs'
+import FileSystemStorage from '../lib/FileSystemStorage.mjs'
 
 test('add() entries to storage', async t => {
   const { mockFs, storage } = t.context
@@ -40,7 +40,7 @@ test.skip('query() entries from storage with maxResults', async t => {
 
 test.beforeEach(t => {
   const mockFs = new MockFS()
-  const storage = new SimpleStorage(mockFs, { directory: 'test' })
+  const storage = new FileSystemStorage(mockFs, { directory: 'test' })
   t.context = {
     mockFs, storage
   }
