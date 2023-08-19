@@ -1,9 +1,9 @@
 //import loadProviders from './lib/providers.mjs'
 import OpenAIEmbedder from './lib/OpenAIEmbedder.mjs'
-import SimpleStorage from './lib/SimpleStorage.mjs'
+import FileSystemStorage from './lib/FileSystemStorage.mjs'
 import Collection from './lib/Collection.mjs'
 
-export { OpenAIEmbedder, SimpleStorage, Collection }
+export { OpenAIEmbedder, FileSystemStorage, Collection }
 
 // export async function create(embedderName, storage) {
   
