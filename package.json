@@ -24,13 +24,13 @@
   "homepage": "https://github.com/kessler/node-embedding#readme",
   "peerDependencies": {
     "openai": "3.x",
+    "pgvector": "^0.1.5",
     "pg": "^8.11.3"
   },
   "devDependencies": {
     "ava": "^5.3.1"
   },
   "dependencies": {
-    "@kessler/command-queue": "^3.2.3",
     "mkdirp": "^3.0.1",
     "ulidx": "^2.1.0"
   }
