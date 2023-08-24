@@ -2,6 +2,35 @@
 
 This module is built to allow progressive advancement from simple json based embedding database to more advanced solutions like chroma or redis.
 
+## quick start
+
+```js
+import { loadProviders, Collection } from '@kessler/embedding'
+
+async function main() {
+  const { storage, embedders } = await loadProviders({ 
+    fs: { directory: '/some/directory' },
+    openai: { apiKey: 'openai key here' } 
+  })
+
+  const { fs } = storage
+  const { openai } = embedders
+
+  await fs.init()
+  await openai.init()
+
+  const collection = new Collection('test', openai, fs)
+  
+  await collection.add('hello world', { created: Date.now() })
+  console.log(await collection.query('hello'))
+
+  await fs.shutdown()
+  await openai.shutdown()
+}
+
+main()
+```
+
 ## Collections
 
 Collections are the highest abstraction layer. They group together documents, their embedding data and some optional metadata.
@@ -46,6 +75,7 @@ class MyStorage {
   async delete(id) {}
   async get(id) {}
   async init() {}
+  async collections() {}
 }
 ```
 
@@ -58,8 +88,11 @@ import { loadProviders } from '@kessler/embedding'
 
 async function main() {
   const { storage, embedders } = await loadProviders({ /* ...providers config */ })
+  const { pg } = storage
+  const { openai } = embedders
 
-  await storage.pg.init()
+  await pg.init()
+  await openai.init()
 }
 
 main()

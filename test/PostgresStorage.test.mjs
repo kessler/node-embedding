@@ -76,6 +76,9 @@ test.skip('query() entries from storage with maxResults', async t => {
 
 })
 
+test.skip('collections()', async t => {
+  
+})
 
 test.beforeEach(t => {
   const storage = new PostgresStorage(new MockPG())

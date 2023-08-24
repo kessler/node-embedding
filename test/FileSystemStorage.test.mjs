@@ -38,6 +38,10 @@ test.skip('query() entries from storage with maxResults', async t => {
 
 })
 
+test.skip('collections()', async t => {
+  
+})
+
 test.beforeEach(t => {
   const mockFs = new MockFS()
   const storage = new FileSystemStorage(mockFs, { directory: 'test' })
