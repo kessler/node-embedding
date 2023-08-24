@@ -60,21 +60,23 @@ class Embedder {
   constructor(underlyingProvider, config) {}
   async exec(text, metadata) {}
   async init() {}
+  async shutdown() {}
 }
 ```
 
-_TODO: once a document is embedding with one service and stored, the embedding provider cannot be changed, if the embedding scheme is different in the new provider. This must be addressed some how in the design._
+_TODO: once a document is embedded with one service and stored, the embedding provider cannot be changed, if the embedding scheme is different in the new provider. This must be addressed some how in the design._
 
 ### storage provider
 
 ```js
 class MyStorage {
   constructor(underlyingProvider, config) {}
-  async query(embedding, { maxResults, threshold }) {}
-  async add(text, embedding, metadata) {}
-  async delete(id) {}
-  async get(id) {}
+  async query(collectionName, embedding, { maxResults, threshold }) {}
+  async add(collectionName, content, embedding, metadata) {}
+  async delete(collectionName, id) {}
+  async get(collectionName, id) {}
   async init() {}
+  async shutdown() {}
   async collections() {}
 }
 ```
@@ -100,9 +102,101 @@ main()
 
 ### loading manually
 
+TBD
+
 ### embedding providers
 
+#### openai embedder
+
+Currently the only supported embedding service.
+
+run `npm install openai`
+
+```js
+import { loadProviders } from '@kessler/embedding'
+
+async function main() {
+  const { embedders, storage } = await loadProviders({ 
+    openai: { apiKey: 'your-api-key' } 
+  })
+
+  const { openai } = embedders
+  await openai.init()
+
+  // do stuff
+  await openai.shutdown()
+}
+
+main()
+```
+
 ### storage providers
+
+#### File System storage
+The simplest non optimized solution, collections are saved on the file system in json files.
+
+Embedding is matched by going through all the existing documents, so not very scalable.
+
+_I have plans to implement a better algorithm in the future._
+
+
+```js
+import { loadProviders } from '@kessler/embedding'
+
+async function main() {
+  const { embedders, storage } = await loadProviders({ 
+    fs: { directory: '/some/path/to/embedding-db' },
+  })
+
+  const { fs } = storage
+  await fs.init()
+
+  // do stuff
+  await fs.shutdown()
+}
+
+main()
+```
+
+#### Postgresql storage
+
+Uses postgresql database with [pgvector](https://github.com/pgvector/pgvector) extension installed.
+
+run ```npm install pg pgvector``` _(mind the peer dependency versions)_
+
+```js
+import { loadProviders } from './index.mjs'
+
+async function main() {
+
+  const { embedders, storage } = await loadProviders({ 
+    // there are defaults though, database "embedding", localhost, root and no password
+    pg: {
+      databaseConfig: {
+        database: 'embedding',
+        user: 'root',
+        password: 'shhhhhhhhhhh'
+      }
+    }
+  })
+  
+  const { pg } = storage
+  await pg.init()
+  
+  // do stuff
+  await pg.shutdown()
+}
+
+main()
+```
+
+#### Redis storage
+
+TBD
+
+#### Chroma storage
+
+TBD
 
 ## resources
 - https://supabase.com/blog/openai-embeddings-postgres-vector

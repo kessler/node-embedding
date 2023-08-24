@@ -24,8 +24,8 @@
   "homepage": "https://github.com/kessler/node-embedding#readme",
   "peerDependencies": {
     "openai": "3.x",
-    "pgvector": "^0.1.5",
-    "pg": "^8.11.3"
+    "pgvector": "0.x",
+    "pg": "8.x"
   },
   "devDependencies": {
     "ava": "^5.3.1"
