@@ -1,6 +1,6 @@
 {
   "name": "@kessler/embedding",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "An engine for handling LLM embedding",
   "main": "index.mjs",
   "scripts": {
